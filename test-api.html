@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست API برنامه نقاشی</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            direction: rtl;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+        }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.3);
+            border: 1px solid #4CAF50;
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+            border: 1px solid #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تست API برنامه نقاشی</h1>
+        
+        <div class="test-section">
+            <h3>بررسی وضعیت سرور</h3>
+            <button onclick="testHealth()">بررسی سلامت سرور</button>
+            <div id="health-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>تست ورود کاربر</h3>
+            <input type="text" id="username" placeholder="نام کاربری" value="user1">
+            <input type="password" id="password" placeholder="رمز عبور" value="password123">
+            <button onclick="testLogin()">تست ورود</button>
+            <div id="login-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>تست دریافت نقاشی</h3>
+            <button onclick="testGetDrawing()">دریافت نقاشی کاربر</button>
+            <div id="get-drawing-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>تست ذخیره نقاشی</h3>
+            <input type="text" id="drawing-title" placeholder="عنوان نقاشی" value="نقاشی تست">
+            <button onclick="testSaveDrawing()">ذخیره نقاشی</button>
+            <div id="save-drawing-result" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>تست لیست کاربران</h3>
+            <button onclick="testGetUsers()">دریافت لیست کاربران</button>
+            <div id="users-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentToken = null;
+
+        async function testHealth() {
+            try {
+                const response = await fetch('http://localhost:5000/api/health');
+                const data = await response.json();
+                document.getElementById('health-result').textContent = 
+                    `وضعیت: ${response.ok ? 'موفق' : 'ناموفق'}\nکد: ${response.status}\nپاسخ: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                document.getElementById('health-result').textContent = `خطا: ${error.message}`;
+            }
+        }
+
+        async function testLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    currentToken = data.token;
+                    document.getElementById('login-result').textContent = 
+                        `ورود موفق!\nتوکن: ${data.token.substring(0, 50)}...\nکاربر: ${JSON.stringify(data.user, null, 2)}`;
+                } else {
+                    document.getElementById('login-result').textContent = 
+                        `خطا در ورود: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('login-result').textContent = `خطا: ${error.message}`;
+            }
+        }
+
+        async function testGetDrawing() {
+            if (!currentToken) {
+                document.getElementById('get-drawing-result').textContent = 'ابتدا وارد شوید';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/drawing', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                const data = await response.json();
+                document.getElementById('get-drawing-result').textContent = 
+                    `وضعیت: ${response.ok ? 'موفق' : 'ناموفق'}\nکد: ${response.status}\nپاسخ: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                document.getElementById('get-drawing-result').textContent = `خطا: ${error.message}`;
+            }
+        }
+
+        async function testSaveDrawing() {
+            if (!currentToken) {
+                document.getElementById('save-drawing-result').textContent = 'ابتدا وارد شوید';
+                return;
+            }
+            
+            const title = document.getElementById('drawing-title').value;
+            const shapes = [
+                {
+                    type: 'circle',
+                    x: 100,
+                    y: 100,
+                    color: '#e74c3c',
+                    size: 60,
+                    id: Date.now()
+                },
+                {
+                    type: 'square',
+                    x: 200,
+                    y: 150,
+                    color: '#3498db',
+                    size: 80,
+                    id: Date.now() + 1
+                }
+            ];
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/drawing', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title, shapes }),
+                });
+                
+                const data = await response.json();
+                document.getElementById('save-drawing-result').textContent = 
+                    `وضعیت: ${response.ok ? 'موفق' : 'ناموفق'}\nکد: ${response.status}\nپاسخ: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                document.getElementById('save-drawing-result').textContent = `خطا: ${error.message}`;
+            }
+        }
+
+        async function testGetUsers() {
+            try {
+                const response = await fetch('http://localhost:5000/api/users');
+                const data = await response.json();
+                document.getElementById('users-result').textContent = 
+                    `وضعیت: ${response.ok ? 'موفق' : 'ناموفق'}\nکد: ${response.status}\nپاسخ: ${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                document.getElementById('users-result').textContent = `خطا: ${error.message}`;
+            }
+        }
+
+        // تست خودکار سلامت سرور در بارگذاری صفحه
+        window.onload = function() {
+            testHealth();
+        };
+    </script>
+</body>
+</html> 
