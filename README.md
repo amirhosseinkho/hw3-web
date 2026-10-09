@@ -1,166 +1,185 @@
-# برنامه نقاشی با قابلیت ذخیره و بازیابی از سرور
+> Persian version: [README.fa.md](README.fa.md)
 
-این برنامه یک ابزار نقاشی تعاملی است که امکان ذخیره و بازیابی نقاشی‌ها را از سرور فراهم می‌کند.
+# Drawing app with server-side save and load
 
-## ویژگی‌ها
+An interactive drawing tool that can save drawings to a server and load them back.
 
-- **رسم شکل‌های مختلف**: دایره، مربع، مثلث، ستاره، قلب، الماس
-- **انتخاب رنگ**: پالت رنگی کامل برای انتخاب رنگ شکل‌ها
-- **تنظیم اندازه**: اسلایدر برای تغییر اندازه شکل‌ها
-- **عملیات Undo/Redo**: بازگشت و تکرار عملیات
-- **احراز هویت کاربر**: سیستم ورود با نام کاربری و رمز عبور
-- **ذخیره و بازیابی**: ذخیره نقاشی در سرور و بازیابی آن
-- **رابط کاربری فارسی**: تمام متن‌ها به زبان فارسی
-- **طراحی ریسپانسیو**: سازگار با تمام دستگاه‌ها
+## Features
 
-## نصب و راه‌اندازی
+- **Shapes**: circle, square, triangle, star, heart, diamond
+- **Colors**: a full color palette for the shapes
+- **Size**: a slider to change the shape size
+- **Undo/Redo**: undo and repeat operations
+- **User authentication**: login with username and password
+- **Save and load**: save a drawing to the server and load it back
+- **Persian interface**: all UI text is in Persian
+- **Responsive design**: works on all devices
 
-### پیش‌نیازها
+## Installation
 
-- Node.js (نسخه 14 یا بالاتر)
-- npm یا yarn
+### Prerequisites
 
-### مراحل نصب
+- Node.js (version 14 or newer)
+- npm or yarn
 
-1. **کلون کردن پروژه**:
+### Steps
+
+1. **Clone the project**:
    ```bash
-   git clone <repository-url>
-   cd web-hw2
+   git clone https://github.com/amirhosseinkho/hw3-web.git
+   cd hw3-web
    ```
 
-2. **نصب وابستگی‌های فرانت‌اند**:
+2. **Install the front-end dependencies**:
    ```bash
    npm install
    ```
 
-3. **نصب وابستگی‌های سرور**:
+3. **Install the server dependencies**:
    ```bash
    cd server
    npm install
    ```
 
-4. **راه‌اندازی سرور**:
+4. **Start the server**:
    ```bash
-   # در پوشه server
+   # in the server folder
    npm start
    ```
-   سرور روی پورت 5000 اجرا می‌شود.
+   The server runs on port 5000.
 
-5. **راه‌اندازی فرانت‌اند**:
+5. **Start the front end**:
    ```bash
-   # در پوشه اصلی پروژه
+   # in the project root
    npm start
    ```
-   برنامه روی پورت 3000 اجرا می‌شود.
+   The app runs on port 3000.
 
-## حساب‌های آزمایشی
+## Test accounts
 
-برای تست برنامه، از حساب‌های زیر استفاده کنید:
+Use these accounts to try the app:
 
-| نام کاربری | رمز عبور |
-|------------|----------|
-| user1      | password123 |
-| user2      | password123 |
-| user3      | password123 |
+| Username | Password |
+|----------|----------|
+| user1    | password123 |
+| user2    | password123 |
+| user3    | password123 |
 
-## نحوه استفاده
+## Usage
 
-### ورود به سیستم
-1. برنامه را باز کنید
-2. یکی از حساب‌های آزمایشی را وارد کنید
-3. روی دکمه "ورود" کلیک کنید
+The interface is in Persian; button names are given below with their English meaning.
 
-### رسم شکل‌ها
-1. از نوار کناری، نوع شکل مورد نظر را انتخاب کنید
-2. رنگ و اندازه شکل را تنظیم کنید
-3. روی صفحه کلیک کنید تا شکل رسم شود
-4. برای حذف شکل، روی آن دوبار کلیک کنید
+### Logging in
 
-### ذخیره و بازیابی
-- **ذخیره در سرور**: روی دکمه "ذخیره در سرور" کلیک کنید
-- **بارگذاری از سرور**: روی دکمه "بارگذاری از سرور" کلیک کنید
-- **خروجی گرفتن**: روی دکمه "خروجی گرفتن" کلیک کنید تا فایل JSON دانلود شود
-- **وارد کردن**: روی دکمه "وارد کردن" کلیک کنید تا فایل JSON بارگذاری شود
+1. Open the app.
+2. Enter one of the test accounts.
+3. Click "ورود" (Log in).
 
-### عملیات Undo/Redo
-- از دکمه‌های بازگشت و تکرار در هدر استفاده کنید
-- یا از کلیدهای میانبر Ctrl+Z و Ctrl+Y استفاده کنید
+### Drawing shapes
 
-## ساختار پروژه
+1. Choose a shape type in the sidebar.
+2. Set the color and size.
+3. Click on the page to draw the shape.
+4. Double-click a shape to delete it.
+
+### Saving and loading
+
+- **Save to server**: click "ذخیره در سرور" (Save to server).
+- **Load from server**: click "بارگذاری از سرور" (Load from server).
+- **Export**: click "خروجی گرفتن" (Export) to download a JSON file.
+- **Import**: click "وارد کردن" (Import) to load a JSON file.
+
+### Undo/Redo
+
+- Use the undo and redo buttons in the header,
+- or the keyboard shortcuts Ctrl+Z and Ctrl+Y.
+
+## Project structure
 
 ```
-web-hw2/
+hw3-web/
 ├── src/
 │   ├── components/
-│   │   ├── Login.jsx          # صفحه ورود
-│   │   ├── Header.jsx         # هدر اصلی
-│   │   ├── Sidebar.jsx        # نوار کناری
-│   │   ├── Canvas.jsx         # صفحه نقاشی
+│   │   ├── Login.jsx          # login page
+│   │   ├── Header.jsx         # main header
+│   │   ├── Sidebar.jsx        # sidebar
+│   │   ├── Canvas.jsx         # drawing area
 │   │   └── ...
 │   ├── services/
-│   │   └── api.js             # سرویس‌های API
-│   └── App.jsx                # کامپوننت اصلی
+│   │   └── api.js             # API services
+│   └── App.jsx                # main component
 ├── server/
-│   ├── server.js              # سرور Express
-│   └── package.json           # وابستگی‌های سرور
-└── package.json               # وابستگی‌های فرانت‌اند
+│   ├── server.js              # Express server
+│   └── package.json           # server dependencies
+└── package.json               # front-end dependencies
 ```
 
-## API Endpoints
+## API endpoints
 
-### احراز هویت
-- `POST /api/login` - ورود کاربر
+### Authentication
 
-### نقاشی‌ها
-- `GET /api/drawing` - دریافت نقاشی کاربر
-- `POST /api/drawing` - ذخیره نقاشی کاربر
+- `POST /api/login`: user login
 
-### سایر
-- `GET /api/users` - لیست کاربران
-- `GET /api/health` - وضعیت سرور
+### Drawings
 
-## تکنولوژی‌های استفاده شده
+- `GET /api/drawing`: get the user's drawing
+- `POST /api/drawing`: save the user's drawing
 
-### فرانت‌اند
+### Other
+
+- `GET /api/users`: list users
+- `GET /api/health`: server status
+
+## Technologies
+
+### Front end
+
 - React.js
 - CSS3
 - HTML5 Canvas
 
-### بک‌اند
+### Back end
+
 - Node.js
 - Express.js
 - SQLite
-- JWT برای احراز هویت
-- bcrypt برای رمزنگاری
+- JWT for authentication
+- bcrypt for password hashing
 
-## نکات مهم
+## Notes
 
-1. **پایگاه داده**: SQLite به صورت خودکار در پوشه `server` ایجاد می‌شود
-2. **توکن**: توکن‌های احراز هویت در localStorage ذخیره می‌شوند
-3. **امنیت**: رمزهای عبور با bcrypt رمزنگاری می‌شوند
-4. **CORS**: سرور برای درخواست‌های cross-origin پیکربندی شده است
+1. **Database**: the SQLite database is created automatically in the `server` folder.
+2. **Token**: authentication tokens are stored in `localStorage`.
+3. **Security**: passwords are hashed with bcrypt.
+4. **CORS**: the server is configured for cross-origin requests.
 
-## عیب‌یابی
+## Troubleshooting
 
-### مشکل اتصال به سرور
-- مطمئن شوید سرور روی پورت 5000 اجرا می‌شود
-- بررسی کنید که firewall پورت 5000 را مسدود نکرده باشد
+### Cannot connect to the server
 
-### مشکل پایگاه داده
-- فایل `database.sqlite` را از پوشه `server` حذف کنید
-- سرور را مجدداً راه‌اندازی کنید
+- Make sure the server is running on port 5000.
+- Check that the firewall is not blocking port 5000.
 
-### مشکل احراز هویت
-- localStorage را پاک کنید
-- صفحه را refresh کنید
+### Database problems
 
-## توضیحات تفصیلی سرور و عملکرد سیستم
+- Delete `database.sqlite` from the `server` folder.
+- Restart the server.
 
-### معماری سرور
+### Authentication problems
 
-سرور این برنامه با استفاده از Node.js و Express.js پیاده‌سازی شده است. ساختار سرور شامل موارد زیر است:
+- Clear `localStorage`.
+- Refresh the page.
 
-#### فایل server.js
+## How the server and the system work
+
+The code excerpts below keep the app's Persian error and UI messages as they appear in the code; comments are translated.
+
+### Server architecture
+
+The server is built with Node.js and Express.js. It consists of the following parts.
+
+#### server.js
+
 ```javascript
 const express = require('express');
 const cors = require('cors');
@@ -172,18 +191,19 @@ const app = express();
 const PORT = 5000;
 const JWT_SECRET = 'your-secret-key';
 
-// میدلورها
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ایجاد پایگاه داده
+// Create the database
 const db = new sqlite3.Database('database.sqlite');
 ```
 
-#### ساختار پایگاه داده
-پایگاه داده SQLite شامل دو جدول اصلی است:
+#### Database schema
 
-1. **جدول users**: برای ذخیره اطلاعات کاربران
+The SQLite database has two main tables:
+
+1. **users**: stores user accounts
 ```sql
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -193,7 +213,7 @@ CREATE TABLE users (
 );
 ```
 
-2. **جدول drawings**: برای ذخیره نقاشی‌های کاربران
+2. **drawings**: stores users' drawings
 ```sql
 CREATE TABLE drawings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -205,14 +225,15 @@ CREATE TABLE drawings (
 );
 ```
 
-### سیستم احراز هویت و ورود
+### Authentication and login
 
-#### فرآیند ورود کاربر
-1. **درخواست ورود**: کاربر نام کاربری و رمز عبور را وارد می‌کند
-2. **بررسی در پایگاه داده**: سرور نام کاربری را در جدول users جستجو می‌کند
-3. **تأیید رمز عبور**: با استفاده از bcrypt رمز عبور بررسی می‌شود
-4. **تولید توکن**: در صورت موفقیت، JWT token تولید می‌شود
-5. **ارسال پاسخ**: توکن و اطلاعات کاربر به فرانت‌اند ارسال می‌شود
+#### Login flow
+
+1. **Login request**: the user enters a username and password.
+2. **Database lookup**: the server looks up the username in the `users` table.
+3. **Password check**: the password is verified with bcrypt.
+4. **Token creation**: on success, a JWT is created.
+5. **Response**: the token and the user information are sent to the front end.
 
 ```javascript
 app.post('/api/login', async (req, res) => {
@@ -238,8 +259,9 @@ app.post('/api/login', async (req, res) => {
 });
 ```
 
-#### میدلور احراز هویت
-برای محافظت از endpoint های حساس، میدلور احراز هویت استفاده می‌شود:
+#### Authentication middleware
+
+Sensitive endpoints are protected by an authentication middleware:
 
 ```javascript
 const authenticateToken = (req, res, next) => {
@@ -260,15 +282,16 @@ const authenticateToken = (req, res, next) => {
 };
 ```
 
-### سیستم ذخیره و بازیابی نقاشی
+### Saving and loading drawings
 
-#### ذخیره نقاشی در سرور
-فرآیند ذخیره نقاشی شامل مراحل زیر است:
+#### Saving a drawing to the server
 
-1. **دریافت داده نقاشی**: فرانت‌اند داده نقاشی را به صورت JSON ارسال می‌کند
-2. **احراز هویت**: سرور توکن کاربر را بررسی می‌کند
-3. **ذخیره در پایگاه داده**: داده نقاشی در جدول drawings ذخیره می‌شود
-4. **به‌روزرسانی**: اگر نقاشی قبلی وجود داشته باشد، آن به‌روزرسانی می‌شود
+Saving a drawing works as follows:
+
+1. **Receive the drawing**: the front end sends the drawing data as JSON.
+2. **Authenticate**: the server checks the user's token.
+3. **Store**: the drawing data is stored in the `drawings` table.
+4. **Update**: if the user already has a drawing, it is updated.
 
 ```javascript
 app.post('/api/drawing', authenticateToken, (req, res) => {
@@ -281,7 +304,7 @@ app.post('/api/drawing', authenticateToken, (req, res) => {
         }
         
         if (existingDrawing) {
-            // به‌روزرسانی نقاشی موجود
+            // Update the existing drawing
             db.run('UPDATE drawings SET drawing_data = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?', 
                 [drawingData, userId], (err) => {
                 if (err) {
@@ -290,7 +313,7 @@ app.post('/api/drawing', authenticateToken, (req, res) => {
                 res.json({ message: 'نقاشی با موفقیت به‌روزرسانی شد' });
             });
         } else {
-            // ایجاد نقاشی جدید
+            // Create a new drawing
             db.run('INSERT INTO drawings (user_id, drawing_data) VALUES (?, ?)', 
                 [userId, drawingData], (err) => {
                 if (err) {
@@ -303,13 +326,14 @@ app.post('/api/drawing', authenticateToken, (req, res) => {
 });
 ```
 
-#### بازیابی نقاشی از سرور
-فرآیند بازیابی نقاشی شامل مراحل زیر است:
+#### Loading a drawing from the server
 
-1. **درخواست بازیابی**: فرانت‌اند درخواست بازیابی نقاشی را ارسال می‌کند
-2. **احراز هویت**: سرور توکن کاربر را بررسی می‌کند
-3. **جستجو در پایگاه داده**: نقاشی کاربر از جدول drawings بازیابی می‌شود
-4. **ارسال داده**: داده نقاشی به فرانت‌اند ارسال می‌شود
+Loading a drawing works as follows:
+
+1. **Load request**: the front end requests the drawing.
+2. **Authenticate**: the server checks the user's token.
+3. **Look up**: the user's drawing is read from the `drawings` table.
+4. **Send**: the drawing data is sent to the front end.
 
 ```javascript
 app.get('/api/drawing', authenticateToken, (req, res) => {
@@ -329,10 +353,11 @@ app.get('/api/drawing', authenticateToken, (req, res) => {
 });
 ```
 
-### عملکرد فرانت‌اند
+### Front end
 
-#### سرویس API (api.js)
-فرانت‌اند از سرویس api.js برای ارتباط با سرور استفاده می‌کند:
+#### API service (api.js)
+
+The front end talks to the server through `api.js`:
 
 ```javascript
 const API_BASE_URL = 'http://localhost:5000/api';
@@ -396,8 +421,9 @@ class ApiService {
 }
 ```
 
-#### کامپوننت Login
-کامپوننت Login مسئول ورود کاربران است:
+#### Login component
+
+The `Login` component handles user login:
 
 ```javascript
 const Login = ({ onLogin }) => {
@@ -446,37 +472,39 @@ const Login = ({ onLogin }) => {
 };
 ```
 
-### مدیریت حالت و ذخیره محلی
+### State management and local storage
 
-#### ذخیره محلی با localStorage
-برنامه از localStorage برای ذخیره موقت داده‌ها استفاده می‌کند:
+#### Local storage with localStorage
+
+The app uses `localStorage` to store data temporarily:
 
 ```javascript
-// ذخیره نقاشی در localStorage
+// Save the drawing to localStorage
 const saveToLocalStorage = (drawingData) => {
     localStorage.setItem('drawingData', JSON.stringify(drawingData));
 };
 
-// بازیابی نقاشی از localStorage
+// Load the drawing from localStorage
 const loadFromLocalStorage = () => {
     const data = localStorage.getItem('drawingData');
     return data ? JSON.parse(data) : null;
 };
 
-// ذخیره تاریخچه عملیات
+// Save the operation history
 const saveHistory = (history) => {
     localStorage.setItem('drawingHistory', JSON.stringify(history));
 };
 
-// بازیابی تاریخچه عملیات
+// Load the operation history
 const loadHistory = () => {
     const data = localStorage.getItem('drawingHistory');
     return data ? JSON.parse(data) : [];
 };
 ```
 
-#### مدیریت Undo/Redo
-سیستم Undo/Redo با استفاده از آرایه‌ای از حالت‌های نقاشی پیاده‌سازی شده است:
+#### Undo/Redo
+
+Undo/redo is implemented with an array of drawing states:
 
 ```javascript
 const [history, setHistory] = useState([]);
@@ -505,10 +533,11 @@ const redo = () => {
 };
 ```
 
-### امنیت و بهترین شیوه‌ها
+### Security and good practices
 
-#### رمزنگاری رمزهای عبور
-تمام رمزهای عبور با استفاده از bcrypt رمزنگاری می‌شوند:
+#### Password hashing
+
+All passwords are hashed with bcrypt:
 
 ```javascript
 const hashPassword = async (password) => {
@@ -517,11 +546,12 @@ const hashPassword = async (password) => {
 };
 ```
 
-#### مدیریت توکن‌ها
-توکن‌های JWT برای احراز هویت استفاده می‌شوند و در localStorage ذخیره می‌شوند:
+#### Token handling
+
+JWTs are used for authentication and stored in `localStorage`:
 
 ```javascript
-// بررسی اعتبار توکن
+// Check whether the token is valid
 const isTokenValid = () => {
     const token = localStorage.getItem('token');
     if (!token) return false;
@@ -535,8 +565,9 @@ const isTokenValid = () => {
 };
 ```
 
-#### محافظت از CORS
-سرور برای درخواست‌های cross-origin پیکربندی شده است:
+#### CORS
+
+The server is configured for cross-origin requests:
 
 ```javascript
 app.use(cors({
@@ -545,10 +576,11 @@ app.use(cors({
 }));
 ```
 
-### عیب‌یابی و نگهداری
+### Troubleshooting and maintenance
 
-#### لاگ‌گیری
-سرور شامل سیستم لاگ‌گیری برای عیب‌یابی است:
+#### Logging
+
+The server logs requests for troubleshooting:
 
 ```javascript
 app.use((req, res, next) => {
@@ -557,8 +589,9 @@ app.use((req, res, next) => {
 });
 ```
 
-#### مدیریت خطا
-تمام endpoint ها شامل مدیریت خطای مناسب هستند:
+#### Error handling
+
+All endpoints include error handling:
 
 ```javascript
 app.use((err, req, res, next) => {
@@ -567,14 +600,12 @@ app.use((err, req, res, next) => {
 });
 ```
 
-#### پشتیبان‌گیری از پایگاه داده
-پایگاه داده SQLite به صورت خودکار در فایل `database.sqlite` ذخیره می‌شود و می‌تواند به راحتی پشتیبان‌گیری شود.
+#### Database backup
 
+The SQLite database is stored automatically in `database.sqlite` and can be backed up easily.
 
-این سیستم با استفاده از تکنولوژی‌های مدرن وب پیاده‌سازی شده است و شامل تمام ویژگی‌های مورد نیاز برای یک برنامه نقاشی تعاملی است. معماری سرور ساده اما کارآمد است و امکان گسترش آسان را فراهم می‌کند. سیستم احراز هویت امن و سیستم ذخیره و بازیابی قابل اعتماد است.
+This system is built with modern web technologies and includes the features needed for an interactive drawing app. The server architecture is simple but effective and easy to extend. Authentication is secure, and saving and loading are reliable.
 
+#### Use of AI
 
-#### استفاده از هوش مصنوعی
-برای نوشتن گزارش توضیحات کافی و دقیق به همراه کد ها برای gpt4o فرستاده شده و برای نگراش دقیق تر از و منظم از آن استفاده شده است.
-همچنین در بخش هایی از کد برای بهینه سازی و کارایی بهتر از مدل ها کمک گرفته شده است
-
+To write this report, detailed explanations and the code were given to GPT-4o, which was used to make the text more precise and better organized. AI models were also used in parts of the code for optimization and better performance.
